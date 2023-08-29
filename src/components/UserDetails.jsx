@@ -3,6 +3,8 @@ import { contextExport } from "../context/Context";
 import { Link, useParams } from "react-router-dom";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
+
+
 function UserDetails() {
   const contextFetch = contextExport();
   const { id } = useParams();

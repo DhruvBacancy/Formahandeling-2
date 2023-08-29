@@ -16,7 +16,7 @@ function ViewUser() {
 
   const [pageNumber, setPageNumber] = useState(0);
 
-  const userPerPage = 5;
+  const [userPerPage, setUserPerPage] = useState(5);
   const pagesVisited = pageNumber * userPerPage;
 
   const displayUser = search
@@ -44,6 +44,11 @@ function ViewUser() {
     }
   }, [id]);
 
+  const handleselect = (e) => {
+    setUserPerPage(e.target.value);
+    console.log(userPerPage);
+  };
+
   const pageCount = Math.ceil(search.length / userPerPage);
 
   const changePage = ({ selected }) => {
@@ -59,6 +64,30 @@ function ViewUser() {
   } else {
     return (
       <>
+        <div className="dropdown">
+          <label for="userPerPage">No Of Users: </label>
+
+          <select
+            name="userPerPage"
+            className="btn btn-secondary dropdown-toggle"
+            id="userPerPage"
+            onChange={handleselect}
+          >
+            <option value="5" className="dropdown-item">
+              5
+            </option>
+            <option value="10" className="dropdown-item">
+              10
+            </option>
+            <option value="15" className="dropdown-item">
+              15
+            </option>
+            <option value="20" className="dropdown-item">
+              20
+            </option>
+          </select>
+        </div>
+
         <br />
         <br />
         <input
@@ -79,6 +108,7 @@ function ViewUser() {
           }}
         />
         {displayUser}
+
         <div>
           <br />
           <ReactPaginate
